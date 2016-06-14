@@ -1,11 +1,13 @@
 package it.alfionte.dagger;
 
+import android.text.TextUtils;
+
 public class NetworkApi {
 
     public boolean validateUser(String username, String password) {
         // imagine an actual network call here
         // for demo purpose return false in "real" life
-        if (username == null || username.length() == 0) {
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             return false;
         } else {
             return true;

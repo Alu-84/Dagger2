@@ -20,7 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         getNetworkComponent(this).inject(this);
 
-        boolean injected = networkApi != null;
-        Log.d("tag", "DaggerTest "+String.valueOf(injected));
+        boolean isLucaUserValid = networkApi.validateUser("Luca", "Bonzi");
+        boolean isCiccioUserValid = networkApi.validateUser("Ciccio", null);
+
+        Log.d("tag", "DaggerTest Luca Bonzi, isUserValid: "+ isLucaUserValid);
+        Log.d("tag", "DaggerTest Ciccio Null, isUserValid: "+ isCiccioUserValid);
     }
 }
