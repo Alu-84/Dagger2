@@ -6,24 +6,24 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
-import static it.alfionte.dagger.DaggerApplication.getNetworkComponent;
+import static it.alfionte.dagger.DaggerApplication.getValidateUserComponent;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
     NetworkApi networkApi;
 
+    @Inject
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getNetworkComponent(this).inject(this);
+        getValidateUserComponent(this).inject(this);
 
-        boolean isLucaUserValid = networkApi.validateUser("Luca", "Bonzi");
-        boolean isCiccioUserValid = networkApi.validateUser("Ciccio", null);
-
-        Log.d("tag", "DaggerTest Luca Bonzi, isUserValid: "+ isLucaUserValid);
-        Log.d("tag", "DaggerTest Ciccio Null, isUserValid: "+ isCiccioUserValid);
+        boolean isUserValid = networkApi.validateUser(user);
+        Log.d("tag", "DaggerTest " + user.toString() + ", isUserValid: " + isUserValid);
     }
 }
